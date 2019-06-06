@@ -8,8 +8,8 @@ const serverHost = process.env.DEV_HOST || 'localhost';
 const serverPort = process.env.DEV_PORT || '5000';
 const serverURL = `http://${serverHost}:${serverPort}`;
 
-const allOperatorsRequest = process.env.DEV_MODE ? `${serverURL}/apps` : `api.kscout.io/apps`;
-const operatorRequest = process.env.DEV_MODE ? `${serverURL}/app` : `api.kscout.io/apps/`;
+const allOperatorsRequest = process.env.DEV_MODE ? `${serverURL}/apps` : `http://api.kscout.io/apps`;
+const operatorRequest = process.env.DEV_MODE ? `${serverURL}/app` : `http://api.kscout.io/apps/`;
 
 const fetchOperator = (operatorName, channel) => dispatch => {
   dispatch({
