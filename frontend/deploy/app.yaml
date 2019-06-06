@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site
+  namespace: knative-scout
+  labels:
+    app: site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site
+  template:
+    metadata:
+      labels:
+        app: site
+    spec:
+      containers:
+        - name: site
+          image: docker.io/kscout/site:dev-2
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: site
+  namespace: knative-scout
+  labels:
+    app: site
+spec:
+  type: ClusterIP
+  selector:
+    app: site
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+      name: http
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: site
+  namespace: knative-scout
+  labels:
+    app: site
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  host: www.kscout.io
+  path: /
+  to:
+    kind: Service
+    name: site
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+status:
+  ingress:
+    - host: www.kscout.io
