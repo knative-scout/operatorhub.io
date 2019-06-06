@@ -5,11 +5,11 @@ import { reduxConstants } from '../redux';
 import { mockOperators } from '../__mock__/apps';
 
 const serverHost = process.env.DEV_HOST || 'localhost';
-const serverPort = process.env.DEV_PORT || 5000;
+const serverPort = process.env.DEV_PORT || '5000';
 const serverURL = `http://${serverHost}:${serverPort}`;
 
-const allOperatorsRequest = process.env.DEV_MODE ? `${serverURL}/apps` : `/apps`;
-const operatorRequest = process.env.DEV_MODE ? `${serverURL}/app` : `/apps/`;
+const allOperatorsRequest = process.env.DEV_MODE ? `${serverURL}/apps` : `api.kscout.io/apps`;
+const operatorRequest = process.env.DEV_MODE ? `${serverURL}/app` : `api.kscout.io/apps/`;
 
 const fetchOperator = (operatorName, channel) => dispatch => {
   dispatch({
