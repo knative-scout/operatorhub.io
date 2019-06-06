@@ -1,0 +1,6 @@
+.cache-loader
+Caddyfile
+Dockerfile
+Makefile
+dist
+node_modules
