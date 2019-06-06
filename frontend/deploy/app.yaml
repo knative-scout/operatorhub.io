@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: site
-          image: docker.io/kscout/site:dev-2
+          image: docker.io/kscout/site:dev-5
           ports:
             - name: http
               containerPort: 80
@@ -53,12 +53,10 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: site
+  name: site-www
   namespace: knative-scout
   labels:
     app: site
-  annotations:
-    kubernetes.io/tls-acme: "true"
 spec:
   host: www.kscout.io
   path: /
@@ -68,9 +66,26 @@ spec:
     weight: 100
   port:
     targetPort: http
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
 status:
   ingress:
     - host: www.kscout.io
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: site-apex
+  namespace: knative-scout
+  labels:
+    app: site
+spec:
+  host: kscout.io
+  path: /
+  to:
+    kind: Service
+    name: site
+    weight: 100
+  port:
+    targetPort: http
+status:
+  ingress:
+    - host: kscout.io
