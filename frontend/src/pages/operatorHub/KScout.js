@@ -823,9 +823,9 @@ class KScout extends React.Component {
 
     const headerContent = (
       <div className="oh-hub-header-content">
-        <h1 className="oh-hero">Welcome to Knative Scout</h1>
+        <h1 className="oh-hero">Welcome to KScout.io</h1>
         <p className="oh-header-content__sub-title">
-          Knative Scout is a smart serverless app repository. Explore example serverless apps, or post your own.
+          KScout.io is a smart serverless app repository. Explore example serverless apps, or post your own.
         </p>
       </div>
     );
