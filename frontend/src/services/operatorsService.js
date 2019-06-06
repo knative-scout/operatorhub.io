@@ -4,8 +4,8 @@ import { helpers } from '../common/helpers';
 import { reduxConstants } from '../redux';
 import { mockOperators } from '../__mock__/apps';
 
-const serverHost = process.env.DEV_HOST || 'localhost';
-const serverPort = process.env.DEV_PORT || '5000';
+const serverHost = process.env.DEV_HOST || 'api.kscout.io';
+const serverPort = process.env.DEV_PORT || '';
 const serverURL = `http://${serverHost}:${serverPort}`;
 
 const allOperatorsRequest = process.env.DEV_MODE ? `${serverURL}/apps` : `http://api.kscout.io/apps`;
