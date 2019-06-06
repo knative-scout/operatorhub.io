@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: site
-          image: docker.io/kscout/site:dev-5
+          image: docker.io/kscout/site:9de7c962f0d86389d4a84c9d3feae73cf661dca0
           ports:
             - name: http
               containerPort: 80
