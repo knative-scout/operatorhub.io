@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: site
-          image: docker.io/kscout/site:9de7c962f0d86389d4a84c9d3feae73cf661dca0
+          image: docker.io/kscout/site:3a753035346a576eeea1636be76ff377ae784ca1
           ports:
             - name: http
               containerPort: 80
@@ -86,6 +86,8 @@ spec:
     weight: 100
   port:
     targetPort: http
+  tls:
+    termination: edge
 status:
   ingress:
     - host: kscout.io
